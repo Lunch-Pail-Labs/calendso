@@ -1231,7 +1231,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   const integrations = getIntegrations(credentials);
 
-  const locationOptions: OptionTypeBase[] = [];
+  const locationOptions: OptionTypeBase[] = [
+    { value: LocationType.InPerson, label: "Link or In-person meeting" },
+    { value: LocationType.Phone, label: "Phone call" },
+    { value: LocationType.Zoom, label: "Zoom Video", disabled: true },
+  ];
 
   if (hasIntegration(integrations, "zoom_video")) {
     locationOptions.push({ value: LocationType.Zoom, label: "Zoom Video", disabled: true });
