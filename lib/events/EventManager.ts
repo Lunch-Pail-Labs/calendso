@@ -225,7 +225,12 @@ export default class EventManager {
    * @private
    */
 
-  private createAllCalendarEvents(event: CalendarEvent, noMail: boolean | null): Promise<Array<EventResult>> {
+  private createAllCalendarEvents(
+    event: CalendarEvent,
+    noMail: boolean,
+    maybeUid?: string,
+    optionalVideoCallData?: VideoCallData
+  ): Promise<Array<EventResult>> {
     return async.mapLimit(this.calendarCredentials, 5, async (credential: Credential) => {
       return createEvent(credential, event, noMail);
     });
@@ -237,27 +242,15 @@ export default class EventManager {
    * @param event
    * @private
    */
+
   private getVideoCredential(event: CalendarEvent): Credential | undefined {
     if (!event.location) {
       return undefined;
     }
 
     const integrationName = event.location.replace("integrations:", "");
-    return this.videoCredentials.find((credential: Credential) => credential.type.includes(integrationName));
-    }
-    const isDaily = event.location === "integrations:daily";
-    const dailycredential: Credential = {
-      id: 1,
-      type: "daily",
-      key: 1,
-      userId: 1,
-    };
 
-    if(isDaily){
-    return  dailycredential
-    }
-    */
-  
+    return this.videoCredentials.find((credential: Credential) => credential.type.includes(integrationName));
   }
 
   /**
@@ -273,19 +266,6 @@ export default class EventManager {
 
     if (credential) {
       return createMeeting(credential, event);
-    } else {
-      return Promise.reject("No suitable credentials given for the requested integration name.");
-    }
-
-    */
-   //so it saved credential but it didn't do dailyCreateMeeting
-
-    //lola internal creates a credential in the database for daily if one doesn't exist
-
-    if (credential && !isDaily) {
-      return createMeeting(credential, event, maybeUid);
-    } else if (isDaily) {
-      return dailyCreateMeeting(credential, event, maybeUid);
     } else {
       return Promise.reject("No suitable credentials given for the requested integration name.");
     }
