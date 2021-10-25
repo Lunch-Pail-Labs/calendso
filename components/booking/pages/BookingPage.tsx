@@ -240,12 +240,12 @@ const BookingPage = (props: BookingPageProps) => {
                   </p>
                 )}
                 {selectedLocation === LocationType.InPerson && (
-                  <p className="mb-2 text-gray-500">
+                  <p className="mb-2 text-gray-50">
                     <LocationMarkerIcon className="inline-block w-4 h-4 mr-1 -mt-1" />
                     {locationInfo(selectedLocation).address}
                   </p>
                 )}
-                <p className="mb-4 text-green-500">
+                <p className="mb-4 text-gray-50">
                   <CalendarIcon className="inline-block w-4 h-4 mr-1 -mt-1" />
                   {parseZone(date).format(timeFormat + ", dddd DD MMMM YYYY")}
                 </p>
