@@ -7,10 +7,10 @@ function RedirectPage() {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   if (!session?.user?.id) {
-    return { redirect: { permanent: false, destination: "/auth/login" } };
+    return { redirect: { permanent: false, destination: "/hi" } };
   }
 
-  return { redirect: { permanent: false, destination: "/event-types" } };
+  return { redirect: { permanent: false, destination: "/hi" } };
 }
 
 export default RedirectPage;

@@ -1,6 +1,6 @@
 {
-    "name": "Cal.com",
-    "short_name": "Cal.com",
+    "name": "Meet Lunch Pail",
+    "short_name": "Meet lUNCH pail",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#1f2de6",
+    "background_color": "#1f2de6",
     "display": "standalone"
 }
