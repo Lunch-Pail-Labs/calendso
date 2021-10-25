@@ -403,7 +403,7 @@ const BookingPage = (props: BookingPageProps) => {
                           </label>
                           <ReactMultiEmail
                             className="relative"
-                            placeholder="guest@example.com"
+                            placeholder=""
                             emails={guestEmails}
                             onChange={(_emails: string[]) => {
                               setGuestEmails(_emails);
