@@ -196,7 +196,7 @@ const BookingPage = (props: BookingPageProps) => {
                 eventTypeTitle: props.eventType.title,
                 profileName: props.profile.name,
               })}{" "}
-          | Cal.com
+          | Meet Lunch Pail
         </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
