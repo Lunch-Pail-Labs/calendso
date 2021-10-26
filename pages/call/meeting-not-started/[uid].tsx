@@ -67,7 +67,7 @@ export default function MeetingUnavailable(props) {
                   </div>
                   <div className="mt-5 text-center sm:mt-6">
                     <div className="mt-5">
-                      <Button data-testid="return-home" href="/event-types" EndIcon={ArrowRightIcon}>
+                      <Button data-testid="return-home" href="/hi" EndIcon={ArrowRightIcon}>
                         Go back home
                       </Button>
                     </div>

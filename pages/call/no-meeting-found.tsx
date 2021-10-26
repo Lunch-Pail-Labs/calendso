@@ -39,7 +39,7 @@ export default function NoMeetingFound() {
                 </div>
                 <div className="mt-5 text-center sm:mt-6">
                   <div className="mt-5">
-                    <Button data-testid="return-home" href="/event-types" EndIcon={ArrowRightIcon}>
+                    <Button data-testid="return-home" href="/hi" EndIcon={ArrowRightIcon}>
                       {t("go_back_home")}
                     </Button>
                   </div>

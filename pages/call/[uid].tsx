@@ -114,8 +114,8 @@ export default function JoinCall(props, session) {
         <Link href="/">
           <img
             className="fixed z-10 hidden w-auto h-5 sm:inline-block"
-            src="https://cal.com/logo-white.svg"
-            alt="Cal.com Logo"
+            src="https://uploads-ssl.webflow.com/5eed6e6fe625d140525c5769/61782a0c6eef9e8106e83ebc_Group%2013.png"
+            alt="Lunch Pail Labs Logo"
             style={{
               top: 46,
               left: 24,

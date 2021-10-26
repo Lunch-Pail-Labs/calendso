@@ -217,18 +217,16 @@ const BookingPage = (props: BookingPageProps) => {
                       }))
                   )}
                 />
-                <h2 className="font-medium text-gray-500 font-cal dark:text-gray-300">
-                  {props.profile.name}
-                </h2>
+                <h2 className="font-medium text-gray-50 font-cal dark:text-white">{props.profile.name}</h2>
                 <h1 className="mb-4 text-3xl font-semibold text-gray-800 dark:text-white">
                   {props.eventType.title}
                 </h1>
-                <p className="mb-2 text-gray-500">
+                <p className="mb-2 text-gray-50">
                   <ClockIcon className="inline-block w-4 h-4 mr-1 -mt-1" />
                   {props.eventType.length} {t("minutes")}
                 </p>
                 {props.eventType.price > 0 && (
-                  <p className="px-2 py-1 mb-1 -ml-2 text-gray-500">
+                  <p className="px-2 py-1 mb-1 -ml-2 text-gray-50">
                     <CreditCardIcon className="inline-block w-4 h-4 mr-1 -mt-1" />
                     <IntlProvider locale="en">
                       <FormattedNumber
@@ -304,7 +302,7 @@ const BookingPage = (props: BookingPageProps) => {
                             value={location.type}
                             checked={selectedLocation === location.type}
                           />
-                          <span className="ml-2 text-sm dark:text-gray-500">
+                          <span className="ml-2 text-sm dark:text-gray-50">
                             {locationLabels[location.type]}
                           </span>
                         </label>
