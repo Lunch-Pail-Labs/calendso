@@ -2252,9 +2252,10 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@wojtekmaj/date-utils/-/date-utils-1.0.3.tgz#2dcfd92881425c5923e429c2aec86fb3609032a1"
 
-"@wojtekmaj/react-daterange-picker@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@wojtekmaj/react-daterange-picker/-/react-daterange-picker-3.3.1.tgz#50882581480913eca1ec0cc21f2973a121225fe7"
+"@wojtekmaj/react-daterange-picker@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@wojtekmaj/react-daterange-picker/-/react-daterange-picker-3.3.2.tgz#fc1a0b71e02bc9850e1a787f4c13c3b82018664f"
+  integrity sha512-/6e9oh+5NO5Jo2eRx5ybO6WodDwSpuQNVrlsHzjCEzWgpLKUXEQR64ci73/KOVNXOy+sMyDW+0CxDTIzhWqm8g==
   dependencies:
     make-event-props "^1.1.0"
     merge-class-names "^1.1.1"
