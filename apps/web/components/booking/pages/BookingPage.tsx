@@ -24,6 +24,7 @@ import createBooking from "@lib/mutations/bookings/create-booking";
 import { parseZone } from "@lib/parseZone";
 import slugify from "@lib/slugify";
 import { collectPageParameters, telemetryEventTypes, useTelemetry } from "@lib/telemetry";
+import { detectBrowserTimeFormat } from "@lib/timeFormat";
 
 import CustomBranding from "@components/CustomBranding";
 import { EmailInput, Form } from "@components/form/fields";
@@ -61,14 +62,14 @@ const BookingPage = (props: BookingPageProps) => {
       const eventOwner = eventType.users[0];
 
       if (!contracts[(eventType.metadata.smartContractAddress || null) as number])
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         /* @ts-ignore */
         router.replace(`/${eventOwner.username}`);
     }
   }, [contracts, eventType.metadata.smartContractAddress, router]);
 
   const mutation = useMutation(createBooking, {
-    onSuccess: async ({ attendees, paymentUid, ...responseData }) => {
+    onSuccess: async (responseData) => {
+      const { attendees, paymentUid } = responseData;
       if (paymentUid) {
         return await router.push(
           createPaymentLink({
@@ -110,9 +111,7 @@ const BookingPage = (props: BookingPageProps) => {
 
   const rescheduleUid = router.query.rescheduleUid as string;
   const { isReady, Theme } = useTheme(props.profile.theme);
-
   const date = asStringOrNull(router.query.date);
-  const timeFormat = asStringOrNull(router.query.clock) === "24h" ? "H:mm" : "h:mma";
 
   const [guestToggle, setGuestToggle] = useState(props.booking && props.booking.attendees.length > 1);
 
@@ -213,7 +212,7 @@ const BookingPage = (props: BookingPageProps) => {
     if (!date) return "No date";
     const parsedZone = parseZone(date);
     if (!parsedZone?.isValid()) return "Invalid date";
-    const formattedTime = parsedZone?.format(timeFormat);
+    const formattedTime = parsedZone?.format(detectBrowserTimeFormat);
     return formattedTime + ", " + dayjs(date).toDate().toLocaleString(i18n.language, { dateStyle: "full" });
   };
 
@@ -239,7 +238,6 @@ const BookingPage = (props: BookingPageProps) => {
     let web3Details;
     if (eventTypeDetail.metadata.smartContractAddress) {
       web3Details = {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         userWallet: window.web3.currentProvider.selectedAddress,
         userSignature: contracts[(eventTypeDetail.metadata.smartContractAddress || null) as number],
@@ -259,9 +257,7 @@ const BookingPage = (props: BookingPageProps) => {
       location: getLocationValue(booking.locationType ? booking : { locationType: selectedLocation }),
       metadata,
       customInputs: Object.keys(booking.customInputs || {}).map((inputId) => ({
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         label: props.eventType.customInputs.find((input) => input.id === parseInt(inputId))!.label,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         value: booking.customInputs![inputId],
       })),
     });
@@ -292,6 +288,7 @@ const BookingPage = (props: BookingPageProps) => {
             <div className="px-4 py-5 sm:flex sm:p-4">
               <div className="sm:w-1/2 sm:border-r sm:dark:border-gray-800">
                 <AvatarGroup
+                  border="border-2 border-white dark:border-gray-900"
                   size={14}
                   items={[{ image: props.profile.image || "", alt: props.profile.name || "" }].concat(
                     props.eventType.users
@@ -397,7 +394,6 @@ const BookingPage = (props: BookingPageProps) => {
                         {t("phone_number")}
                       </label>
                       <div className="mt-1">
-                        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                         {/* @ts-ignore */}
                         <PhoneInput name="phone" placeholder={t("enter_phone_number")} id="phone" required />
                       </div>
